@@ -58,10 +58,47 @@
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
-        smartSpeed: 1000,
+        autoplayTimeout: 5000,
+        smartSpeed: 800,
         items: 1,
-        dots: false,
+        dots: true,
         loop: true,
+        responsive: {
+            768: { items: 2 },
+            1200: { items: 3 }
+        }
+    });
+
+    // Animated counters — stats overlay visible on load, trigger after short delay
+    setTimeout(function () {
+        $('.counter-value').each(function () {
+            var $el = $(this);
+            var target = parseInt($el.data('target'));
+            var suffix = $el.data('suffix') || '';
+            $({ count: 0 }).animate({ count: target }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function () {
+                    $el.text(Math.floor(this.count) + suffix);
+                },
+                complete: function () {
+                    $el.text(target + suffix);
+                }
+            });
+        });
+    }, 600);
+
+    // Cookie consent
+    if (!localStorage.getItem('cookieConsent')) {
+        setTimeout(function () { $('#cookie-consent').fadeIn(400); }, 1500);
+    }
+    $('#cookie-accept').on('click', function () {
+        localStorage.setItem('cookieConsent', 'accepted');
+        $('#cookie-consent').fadeOut(300);
+    });
+    $('#cookie-decline').on('click', function () {
+        localStorage.setItem('cookieConsent', 'declined');
+        $('#cookie-consent').fadeOut(300);
     });
 
     
