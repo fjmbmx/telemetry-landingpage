@@ -11,6 +11,20 @@ body {
     max-width: 100%;
 }
 
+/* Botón flotante de WhatsApp: oculto hasta bajar 10% */
+.wa__btn_popup {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+}
+
+.wa__btn_popup.wa-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 :root {
     --primary: #FD5D14;
     --secondary: #FDBE33;
@@ -343,44 +357,57 @@ body {
         transform: scale(1.05);
     }
 
-    /* Close Button (using Toggler) Logic */
-    .navbar-toggler {
-        z-index: 2001;
-        /* Layer above overlay */
-        border: none;
-        outline: none;
-        padding: 5px;
-        position: relative;
-    }
-
     .navbar-toggler:focus {
         box-shadow: none;
     }
+}
 
-    /* Botón X de cierre dentro del overlay */
-    .menu-close-btn {
-        position: absolute;
-        top: 20px;
-        right: 24px;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        background: rgba(253, 93, 20, 0.15);
-        border: 1px solid rgba(253, 93, 20, 0.4);
-        color: #fff;
-        font-size: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2002;
-        transition: all 0.25s ease;
-    }
+/* --- TOGGLER: hamburguesa <-> X --- */
+.navbar-toggler {
+    z-index: 2002;
+    border: none;
+    outline: none;
+    padding: 0;
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(253, 93, 20, 0.15);
+    border: 1px solid rgba(253, 93, 20, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
 
-    .menu-close-btn:hover,
-    .menu-close-btn:focus {
-        background: var(--primary);
-        transform: rotate(90deg);
-    }
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler .toggler-icon-open,
+.navbar-toggler .toggler-icon-close {
+    color: #fff;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Por defecto (menú cerrado): mostrar hamburguesa, ocultar X */
+.navbar-toggler .toggler-icon-close {
+    display: none;
+}
+
+/* Menú abierto (Bootstrap quita .collapsed): mostrar X, ocultar hamburguesa */
+.navbar-toggler:not(.collapsed) {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon-open {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon-close {
+    display: inline-block;
 }
 
 @keyframes fadeInUp {
@@ -789,17 +816,31 @@ textarea.contact-input {
 }
 
 @media (max-width: 767px) {
+    /* Stats siguen superpuestos en la parte baja de la imagen */
     .stats-overlay {
-        position: relative;
-        bottom: auto;
         height: auto;
-        padding: 16px 0;
+        padding: 12px 0;
+    }
+    .stats-overlay .row > div {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .stats-item {
+        padding: 4px 8px;
     }
     .col-6:nth-child(2) .stats-item::after {
         display: none;
     }
     .stats-overlay .counter-value {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
+    }
+    .stats-overlay .small {
+        font-size: 0.62rem;
+        letter-spacing: 0.3px;
+    }
+    /* Dejar espacio para los 2 renglones de stats */
+    .carousel-caption {
+        bottom: 135px;
     }
 }
 
