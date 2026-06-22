@@ -19,6 +19,17 @@
     });
 
 
+    // Cerrar el menú móvil al tocar un enlace o el logo
+    $('#navbarCollapse .nav-link, .navbar-brand').on('click', function () {
+        var $collapse = $('#navbarCollapse');
+        if ($collapse.hasClass('show')) {
+            var bsCollapse = bootstrap.Collapse.getInstance($collapse[0])
+                || new bootstrap.Collapse($collapse[0], { toggle: false });
+            bsCollapse.hide();
+        }
+    });
+
+
     // Date and time picker
     $('.date').datetimepicker({
         format: 'L'
