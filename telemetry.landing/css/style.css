@@ -4,6 +4,13 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Evitar desbordamiento horizontal (la página se "encogía" en móvil) */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 :root {
     --primary: #FD5D14;
     --secondary: #FDBE33;
@@ -348,6 +355,31 @@ html {
 
     .navbar-toggler:focus {
         box-shadow: none;
+    }
+
+    /* Botón X de cierre dentro del overlay */
+    .menu-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(253, 93, 20, 0.15);
+        border: 1px solid rgba(253, 93, 20, 0.4);
+        color: #fff;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2002;
+        transition: all 0.25s ease;
+    }
+
+    .menu-close-btn:hover,
+    .menu-close-btn:focus {
+        background: var(--primary);
+        transform: rotate(90deg);
     }
 }
 
