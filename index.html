@@ -100,15 +100,12 @@
                     TELEMETRY
                 </h2>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-label="Abrir o cerrar menú">
+                <i class="fas fa-bars toggler-icon-open"></i>
+                <i class="fas fa-times toggler-icon-close"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!-- Botón cerrar (X) solo en móvil -->
-                <button type="button" class="menu-close-btn d-lg-none" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse" aria-label="Cerrar menú">
-                    <i class="fas fa-times"></i>
-                </button>
                 <div class="navbar-nav ms-auto py-0">
                     <!-- Links hidden on desktop via CSS if sidebar takes over, or kept as backup -->
                     <a href="#home" class="nav-item nav-link active d-lg-none"><i

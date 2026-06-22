@@ -343,44 +343,57 @@ body {
         transform: scale(1.05);
     }
 
-    /* Close Button (using Toggler) Logic */
-    .navbar-toggler {
-        z-index: 2001;
-        /* Layer above overlay */
-        border: none;
-        outline: none;
-        padding: 5px;
-        position: relative;
-    }
-
     .navbar-toggler:focus {
         box-shadow: none;
     }
+}
 
-    /* Botón X de cierre dentro del overlay */
-    .menu-close-btn {
-        position: absolute;
-        top: 20px;
-        right: 24px;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        background: rgba(253, 93, 20, 0.15);
-        border: 1px solid rgba(253, 93, 20, 0.4);
-        color: #fff;
-        font-size: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2002;
-        transition: all 0.25s ease;
-    }
+/* --- TOGGLER: hamburguesa <-> X --- */
+.navbar-toggler {
+    z-index: 2002;
+    border: none;
+    outline: none;
+    padding: 0;
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(253, 93, 20, 0.15);
+    border: 1px solid rgba(253, 93, 20, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
 
-    .menu-close-btn:hover,
-    .menu-close-btn:focus {
-        background: var(--primary);
-        transform: rotate(90deg);
-    }
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler .toggler-icon-open,
+.navbar-toggler .toggler-icon-close {
+    color: #fff;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Por defecto (menú cerrado): mostrar hamburguesa, ocultar X */
+.navbar-toggler .toggler-icon-close {
+    display: none;
+}
+
+/* Menú abierto (Bootstrap quita .collapsed): mostrar X, ocultar hamburguesa */
+.navbar-toggler:not(.collapsed) {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon-open {
+    display: none;
+}
+
+.navbar-toggler:not(.collapsed) .toggler-icon-close {
+    display: inline-block;
 }
 
 @keyframes fadeInUp {
