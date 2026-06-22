@@ -25,7 +25,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 31.170.160.178
-          username: u127814904
+          username: telemetry
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./
