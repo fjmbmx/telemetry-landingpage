@@ -39,12 +39,22 @@
     });
     
     
-    // Back to top button
+    // Back to top button + mostrar WhatsApp tras bajar 10%
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 700) {
+        var scrollTop = $(this).scrollTop();
+
+        if (scrollTop > 700) {
             $('.back-to-top').fadeIn('slow');
         } else {
             $('.back-to-top').fadeOut('slow');
+        }
+
+        // WhatsApp aparece después de bajar el 10% de la página
+        var docHeight = $(document).height() - $(window).height();
+        if (docHeight > 0 && scrollTop / docHeight >= 0.10) {
+            $('.wa__btn_popup').addClass('wa-visible');
+        } else {
+            $('.wa__btn_popup').removeClass('wa-visible');
         }
     });
     $('.back-to-top').click(function () {

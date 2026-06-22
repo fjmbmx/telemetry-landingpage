@@ -11,6 +11,20 @@ body {
     max-width: 100%;
 }
 
+/* Botón flotante de WhatsApp: oculto hasta bajar 10% */
+.wa__btn_popup {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+}
+
+.wa__btn_popup.wa-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 :root {
     --primary: #FD5D14;
     --secondary: #FDBE33;
@@ -802,17 +816,31 @@ textarea.contact-input {
 }
 
 @media (max-width: 767px) {
+    /* Stats siguen superpuestos en la parte baja de la imagen */
     .stats-overlay {
-        position: relative;
-        bottom: auto;
         height: auto;
-        padding: 16px 0;
+        padding: 12px 0;
+    }
+    .stats-overlay .row > div {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    .stats-item {
+        padding: 4px 8px;
     }
     .col-6:nth-child(2) .stats-item::after {
         display: none;
     }
     .stats-overlay .counter-value {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
+    }
+    .stats-overlay .small {
+        font-size: 0.62rem;
+        letter-spacing: 0.3px;
+    }
+    /* Dejar espacio para los 2 renglones de stats */
+    .carousel-caption {
+        bottom: 135px;
     }
 }
 
